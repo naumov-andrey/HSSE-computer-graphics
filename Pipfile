@@ -8,6 +8,11 @@ name = "pypi"
 PyOpenGL = "3.1.5"
 PyOpenGL-accelerate = "3.1.5"
 
+Image = "*"
+Pillow = "*"
+
+numpy = "*"
+
 [dev-packages]
 
 [requires]
