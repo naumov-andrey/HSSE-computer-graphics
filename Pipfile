@@ -12,6 +12,7 @@ Image = "*"
 Pillow = "*"
 
 numpy = "*"
+pandas = "*"
 
 [dev-packages]
 
