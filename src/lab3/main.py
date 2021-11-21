@@ -1,7 +1,7 @@
-import src.lab3.control_points as ctrl_points
-import src.lab3.mouse_motion as mouse_mtn
-import src.lab3.light_motion as light_mth
-import src.lab3.display as disp
+import control_points as ctrl_points
+import mouse_motion as mouse_mtn
+import light_motion as light_mth
+import display as disp
 
 from OpenGL.GL import *
 from OpenGL.GLUT import *
@@ -20,11 +20,8 @@ def handle_keyboard(key, *args):
     if key == b'\x1b':  # esc key
         glutLeaveMainLoop()
 
-    elif key == b' ':   # space key
-        glutIdleFunc(idle)
-
-    elif key == b'g':
-        disp.toggle_grid_size()
+    elif key == b' ':
+        ctrl_points.current_iteration = 0
 
     elif key in [b'w', b'a', b's', b'd']:
         light_mth.move_light(key)
@@ -41,8 +38,13 @@ def main():
     glutCreateWindow("Lab 3")
 
     glEnable(GL_NORMALIZE)
+    # glEnable(GL_AUTO_NORMAL)
     disp.set_light()
 
+    glEnable(GL_DEPTH_TEST)
+    glEnable(GL_ALPHA_TEST)
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
     glEnable(GL_MAP2_VERTEX_3)
 
     glutDisplayFunc(disp.display)

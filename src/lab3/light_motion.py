@@ -1,4 +1,4 @@
-light_pos = [0.0, 0.5, 0.0]
+light_pos = [0.0, 0.0, 0.0, 1]
 light_pos_delta = 0.005
 
 

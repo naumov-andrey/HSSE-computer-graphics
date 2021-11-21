@@ -1,14 +1,16 @@
-import src.lab3.control_points as ctrl_points
-import src.lab3.light_motion as light_mtn
-import src.lab3.mouse_motion as mouse_mtn
+import control_points as ctrl_points
+import light_motion as light_mtn
+import mouse_motion as mouse_mtn
 
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 
 
-surface_color = (0.8, 0.1, 0.1, 0.9)
+surface_color = (0.9, 0.9, 0.8, 1.0)
+surface_specular = surface_color
+surface_shininess = 20
 
-grid_size = 3
+grid_size = 100
 
 light_color = (1.0, 1.0, 1.0, 1.0)
 
@@ -19,14 +21,6 @@ def set_light():
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_color)
     glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.8)
     glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.1)
-
-
-def toggle_grid_size():
-    global grid_size
-
-    grid_size = 20 \
-        if grid_size == ctrl_points.points_shape[0] - 1 \
-        else ctrl_points.points_shape[0] - 1
 
 
 def display_points(points):
@@ -42,7 +36,9 @@ def display_points(points):
 
 
 def display_surface():
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, surface_color)
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, surface_color)
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, surface_specular)
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, surface_shininess)
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
     glEnable(GL_BLEND)
@@ -68,6 +64,7 @@ def display():
     glLoadIdentity()
 
     points = ctrl_points.calculate_points(ctrl_points.current_iteration / ctrl_points.max_iteration)
+
     glMap2f(target=GL_MAP2_VERTEX_3, u1=0, u2=1, v1=0, v2=1, points=points)
 
     display_points(points)

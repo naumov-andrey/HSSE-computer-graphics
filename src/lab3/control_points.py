@@ -3,10 +3,10 @@ import pandas as pd
 current_iteration = 0
 max_iteration = 1000
 
-points_shape = (4, 4, 3)
+points_shape = (7, 3, 3)
 
-end_points = pd.read_csv('../../data/lab3/end_control_points.csv').to_numpy().reshape(points_shape)
-begin_points = pd.read_csv('../../data/lab3/begin_control_points.csv').to_numpy().reshape(points_shape)
+end_points = pd.read_csv('./data/lab3/end_control_points.csv').to_numpy().reshape(points_shape)
+begin_points = pd.read_csv('./data/lab3/begin_control_points.csv').to_numpy().reshape(points_shape)
 
 
 def calculate_points(progress):
