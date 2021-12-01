@@ -56,8 +56,6 @@ def handle_special_keys(key, *args):
         eye_pos[1] += pos_delta
     elif key == GLUT_KEY_DOWN:
         eye_pos[1] -= pos_delta
-    
-    glutPostRedisplay()
 
 
 def R(theta, u):

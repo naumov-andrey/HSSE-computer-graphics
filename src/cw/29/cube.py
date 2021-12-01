@@ -32,13 +32,10 @@ class Cube:
         
     def display(self):
         glEnable(GL_TEXTURE_2D)
-        
         glBindTexture(GL_TEXTURE_2D, self.texture)
         
         glTranslate(self.x, self.y, self.z)
         glScale(self.a, self.a, self.a)
-        
-        glColor3f(1, 1, 1)
         
         for i in range(6):
             glBegin(GL_QUADS)

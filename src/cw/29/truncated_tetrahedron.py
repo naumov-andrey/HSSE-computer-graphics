@@ -115,11 +115,9 @@ class TruncatedTetrahedron:
     
     def __display_object(self):
         glEnable(GL_TEXTURE_2D)
-        glEnable(GL_COLOR_MATERIAL)
         glBindTexture(GL_TEXTURE_2D, self.texture)
         
         glBegin(GL_TRIANGLES)
-        glColor3fv(self.color)
         for i in range(6):
             glTexCoord2f(*self.TEXTURE_COORDS[0])
             glVertex3fv(self.__vdata[self.__TINDICES[i][0]])
@@ -130,7 +128,6 @@ class TruncatedTetrahedron:
         glEnd()
         
         glDisable(GL_TEXTURE_2D)
-        glDisable(GL_COLOR_MATERIAL)
     
     
     def __update_rolling_properties(self):

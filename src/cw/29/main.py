@@ -15,7 +15,7 @@ tetrahedron = TruncatedTetrahedron(x=-1,
                                    z=2 * sqrt(3) / 3,
                                    angular_velocity=6,
                                    color=(1.0, 1.0, 1.0))
-surface = Surface(color=(0.5, 0.6, 0.5), a=10)
+surface = Surface(color=(1, 0.6, 0.5), a=5)
 cube = Cube(a=1, x=0, y=0.5, z=0)
 
 
@@ -25,8 +25,6 @@ def handle_keyboard(key, *args):
     
     elif key == b' ':
         tetrahedron.change_direction() 
-
-    glutPostRedisplay()
 
 
 def display():
@@ -40,18 +38,21 @@ def display():
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     gluLookAt(*eye_pos, *center_pos, *up_direction)
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE)
     
     glPushMatrix()
-    surface.display()
+    init_light()
     glPopMatrix()
-    
+
     glPushMatrix()
     tetrahedron.display()
     glPopMatrix()
     
     glPushMatrix()
     cube.display()
+    glPopMatrix()
+    
+    glPushMatrix()
+    surface.display()
     glPopMatrix()
     
     glutSwapBuffers()
@@ -77,16 +78,15 @@ def main():
     glEnable(GL_AUTO_NORMAL)
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_ALPHA_TEST)
-    glEnable(GL_COLOR_MATERIAL)
     glEnable(GL_BLEND)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
     
     glViewport(0, 0, width, height)
     
-    init_light()
     set_callbacks()
-    cube.set_texture(read_texture('./resources/t1.jpg'))
-    tetrahedron.set_texture(read_texture('./resources/t2.jpg'))
+    cube.set_texture(read_texture('./resources/t5.jpg'))
+    tetrahedron.set_texture(read_texture('./resources/t10.jpg'))
+    surface.set_texture(read_texture('./resources/t11.jpg'))
     
     glutMainLoop()
 
